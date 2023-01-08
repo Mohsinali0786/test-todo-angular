@@ -1,0 +1,10 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.form-fields{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+.fields{
+    width: 300px !important;
+}
