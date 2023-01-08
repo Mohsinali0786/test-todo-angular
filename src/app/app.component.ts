@@ -22,9 +22,9 @@ export class AppComponent {
 
   data: any = []
   dataSource = this.data;
-  genId=0;
-  isEdit:boolean=false;
-  editRecords:any={};
+  genId = 0;
+  isEdit: boolean = false;
+  editRecords: any = {};
 
   getErrorMessage() {
     if (this.email.hasError('required') || (this.name.hasError('required'))) {
@@ -40,35 +40,39 @@ export class AppComponent {
     }
     else {
       console.log('else')
-      this.genId = (this.dataSource[this.dataSource.length - 1].id)+1
+      this.genId = (this.dataSource[this.dataSource.length - 1].id) + 1
 
     }
     console.log(this.genId, 'Iddd')
     let obj = {
-      id: this.genId ,
+      id: this.genId,
       name: this.name.value,
       email: this.email.value,
       phone: this.phone.value,
-      isEdit:this.isEdit,
+      isEdit: this.isEdit,
     }
     this.dataSource = [...this.dataSource, obj];
     console.log(this.dataSource)
   }
   delete(id: any) {
-    this.dataSource=this.dataSource.filter((v:any)=>v.id!=id)
+    this.dataSource = this.dataSource.filter((v: any) => v.id != id)
   }
   edit(id: any) {
-    this.isEdit=true
-    console.log('this',this.name.value)
-    let edit=this.dataSource.find((v:any)=>v.id==id)
-    this.editRecords.name=edit.name
-    this.editRecords.email=edit.email
-    this.editRecords.phone=edit.phone
+    this.isEdit = true
+    console.log('this', this.name.value)
+    let edit = this.dataSource.find((v: any) => v.id == id)
+    this.editRecords.name = edit.name
+    this.editRecords.email = edit.email
+    this.editRecords.phone = edit.phone,
+    this.editRecords.id=id
 
-    console.log('edit',edit)
+    console.log('edit', edit)
   }
-  update(){
-    
+  update() {
+    this.isEdit = false
+    let id=this.editRecords.id
+    this.dataSource[id]=this.editRecords
+    console.log('Update', this.dataSource)
   }
 
 }
